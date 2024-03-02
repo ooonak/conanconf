@@ -1,4 +1,4 @@
-#include "{{name}}.h"
+#include "{{name}}/{{name}}.hpp"
 #include <vector>
 #include <string>
 

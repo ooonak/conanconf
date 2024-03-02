@@ -9,5 +9,5 @@ find_package({{as_name(require)}} CONFIG REQUIRED)
 {% endfor %}
 {%- endif %}
 
-add_executable(example src/example.cpp)
+add_executable(example example.cpp)
 target_link_libraries(example {{name}}::{{name}})
