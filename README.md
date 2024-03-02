@@ -1,0 +1,2 @@
+# conanconf
+Custom Conan configuration
