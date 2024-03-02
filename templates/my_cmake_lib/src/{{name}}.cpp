@@ -1,19 +1,12 @@
 #include <iostream>
-#include "{{name}}.h"
+#include "{{name}}/{{name}}.hpp"
 {% if requires is defined -%}
 {% for require in requires -%}
-#include "{{ as_name(require) }}.h"
+#include "{{ as_name(require) }}/{{ as_name(require) }}.h"
 {% endfor %}
 {%- endif %}
 
-
 void {{package_name}}(){
-    {% if requires is defined -%}
-    {% for require in requires -%}
-    {{ as_name(require) }}();
-    {% endfor %}
-    {%- endif %}
-
     #ifdef NDEBUG
     std::cout << "{{name}}/{{version}}: Hello World Release!\n";
     #else
