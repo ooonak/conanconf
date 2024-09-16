@@ -3,19 +3,19 @@ Custom Conan configuration
 
 ## Install templates
 ```
-$ conan config install https://github.com/ooonak/conanconf.git -t git -sf=templates -tf=templates/command/new
+$ conan config install https://github.com/ooonak/conanconf.git -t git --args="-b main" -sf=templates -tf=templates/command/new -sf=profiles -tf=profiles
 ```
 
 ## Usage
 ### Create a new 'hello' library from template.
 ```
-$ conan new my_cmake_lib -d name=hello -d version=0.0.1 -d requires=spdlog/1.13.0
+$ conan new my_cmake_lib -d name=hello -d version=0.0.1 -d requires=spdlog/1.14.1
 ```
 
 Comes with batteries included out of the box.
 
 ```
-$ conan build .
+$ conan build . -pr clang-release
 $ cd build/Release
 $ ctest
 Test project /tmp/hello/build/Release

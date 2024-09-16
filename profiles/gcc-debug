@@ -1,4 +1,4 @@
-include(clang-18)
+include(gcc-13)
 
 [settings]
 build_type=Debug
