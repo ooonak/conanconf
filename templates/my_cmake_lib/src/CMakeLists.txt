@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.30.3)
 project({{name}} CXX)
 
 add_library({{name}}
+  ../include/{{name}}/{{name}}.hpp
   {{name}}.cpp)
 
 target_include_directories(${PROJECT_NAME}
@@ -20,8 +21,6 @@ target_link_libraries({{name}} PRIVATE {{as_name(require)}}::{{as_name(require)}
 target_compile_features({{name}} PUBLIC cxx_std_23)
 
 add_library({{name}}::{{name}} ALIAS {{name}})
-
-set_target_properties({{name}} PROPERTIES PUBLIC_HEADER "../include")
 
 install(TARGETS ${PROJECT_NAME}
         EXPORT ${CMAKE_PROJECT_NAME}Targets

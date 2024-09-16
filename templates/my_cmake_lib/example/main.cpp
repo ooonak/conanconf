@@ -6,7 +6,7 @@ int main() {
     {{package_name}}();
 
     std::vector<std::string> vec;
-    vec.push_back("test_package");
+    vec.emplace_back("test_package");
 
     {{package_name}}_print_vector(vec);
 }

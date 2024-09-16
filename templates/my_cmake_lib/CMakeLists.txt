@@ -7,6 +7,7 @@ project(
   LANGUAGES CXX)
 
 option(TESTS "Build tests" ON)
+option(STATIC_ANALYSIS "Run clang-tidy and CppCheck status analysis tools" OFF)
 
 # Only do these if this is the main project, and not if it is included through add_subdirectory
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)  
@@ -20,8 +21,13 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
   # Let's nicely support folders in IDEs
   set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-  list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake-files/common/cmake")
-  include(snippets)
+  list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake-files/cmake")
+  include(snippets) 
+
+  if(STATIC_ANALYSIS)
+    enable_clang_tidy()
+    enable_cppcheck()
+  endif()
 
   include(GNUInstallDirs)
   include(CTest)

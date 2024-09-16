@@ -11,6 +11,9 @@ $ conan config install https://github.com/ooonak/conanconf.git -t git --args="-b
 ### Create a new 'hello' library from template.
 ```
 $ conan new my_cmake_lib -d name=hello -d version=0.0.1 -d requires=spdlog/1.14.1
+
+# Update git submodule
+$ git submodule update --init --recursive
 ```
 
 Comes with batteries included out of the box.

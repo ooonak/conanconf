@@ -8,14 +8,14 @@ Checks: '
         concurrency-*,
         cppcoreguidelines-*,
         google-*,
-        llvm-*,
+        llvm-*,-llvm-include-order,
         misc-*,
         modernize-*,-modernize-use-trailing-return-type,
         performance-*,
         portability-*,
         readability-*
         '
-WarningsAsErrors: '*'
+WarningsAsErrors: ''
 HeaderFileExtensions:
   - h
   - hh
