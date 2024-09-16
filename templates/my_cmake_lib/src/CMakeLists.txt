@@ -5,6 +5,8 @@ add_library({{name}}
   ../include/{{name}}/{{name}}.hpp
   {{name}}.cpp)
 
+set_warnings(${PROJECT_NAME})
+
 target_include_directories(${PROJECT_NAME}
     PUBLIC
     $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
