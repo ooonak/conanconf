@@ -3,7 +3,8 @@ Custom Conan configuration
 
 ## Install templates
 ```
-$ conan config install https://github.com/ooonak/conanconf.git -t git --args="-b main" -sf=templates -tf=templates/command/new -sf=profiles -tf=profiles
+$ conan config install https://github.com/ooonak/conanconf.git -t git --args="-b main" -sf=profiles -tf=profiles
+$ conan config install https://github.com/ooonak/conanconf.git -t git --args="-b main" -sf=templates -tf=templates/command/new
 ```
 
 ## Usage
@@ -15,24 +16,26 @@ $ conan new my_cmake_lib -d name=hello -d version=0.0.1 -d requires=spdlog/1.14.
 Comes with batteries included out of the box.
 
 ```
-$ conan build . -pr clang-release
+$ conan build . -pr clang-release --build=missing
 $ cd build/Release
 $ ctest
-Test project /tmp/hello/build/Release
+Test project /tmp/test2/build/Release
     Start 1: hello.Dummy
-1/1 Test #1: hello.Dummy ......................   Passed    0.00 sec
+1/1 Test #1: hello.Dummy ......................   Passed    0.01 sec
 
 100% tests passed, 0 tests failed out of 1
 
-Total Test time (real) =   0.00 sec
+Total Test time (real) =   0.01 sec
 
-$ ./apps/helloApp 
+$ ./build/Release/example/helloExample 
 hello/0.0.1: Hello World Release!
   hello/0.0.1: __x86_64__ defined
-  hello/0.0.1: _GLIBCXX_USE_CXX11_ABI 1
-  hello/0.0.1: __cplusplus201703
-  hello/0.0.1: __GNUC__13
+  hello/0.0.1: _GLIBCXX_USE_CXX11_ABI 0
+  hello/0.0.1: __cplusplus202302
+  hello/0.0.1: __GNUC__4
   hello/0.0.1: __GNUC_MINOR__2
+  hello/0.0.1: __clang_major__18
+  hello/0.0.1: __clang_minor__1
 hello/0.0.1 test_package
 
 $ cd ../../
