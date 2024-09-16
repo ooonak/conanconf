@@ -1,10 +1,14 @@
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.30.3)
 project({{name}} CXX)
 
 add_library({{name}}
+  ../include/{{name}}/{{name}}.hpp
   {{name}}.cpp)
 
-#target_include_directories({{name}} PUBLIC ../include)
+if(STRICT_WARNINGS)
+  set_warnings(${PROJECT_NAME})
+endif()
+
 target_include_directories(${PROJECT_NAME}
     PUBLIC
     $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
@@ -17,14 +21,10 @@ target_link_libraries({{name}} PRIVATE {{as_name(require)}}::{{as_name(require)}
 {% endfor %}
 {%- endif %}
 
-# All users of this library will need at least C++20
-#target_compile_features(modern_library PUBLIC cxx_std_20)
+# All users of this library will need at least C++23
+target_compile_features({{name}} PUBLIC cxx_std_23)
 
 add_library({{name}}::{{name}} ALIAS {{name}})
-
-#set_target_properties({{name}} PROPERTIES PUBLIC_HEADER "../include")
-
-#install(TARGETS {{name}})
 
 install(TARGETS ${PROJECT_NAME}
         EXPORT ${CMAKE_PROJECT_NAME}Targets

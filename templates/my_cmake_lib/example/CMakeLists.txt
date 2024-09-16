@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.25)
 
-project({{name}}App LANGUAGES CXX)
+project({{name}}Example LANGUAGES CXX)
 
 add_executable(${PROJECT_NAME}
     main.cpp

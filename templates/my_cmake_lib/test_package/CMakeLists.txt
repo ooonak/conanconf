@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.30.3)
 project(PackageTest CXX)
 
 find_package({{name}} CONFIG REQUIRED)

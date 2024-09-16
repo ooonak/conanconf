@@ -1,0 +1,4 @@
+include(gcc-13)
+
+[settings]
+build_type=Release

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.30.3)
 
 project(
   {{name}}
@@ -7,21 +7,28 @@ project(
   LANGUAGES CXX)
 
 option(TESTS "Build tests" ON)
+option(STATIC_ANALYSIS "Run clang-tidy and CppCheck status analysis tools" OFF)
+option(STRICT_WARNINGS "Use strict compiler warnings" ON)
 
 # Only do these if this is the main project, and not if it is included through add_subdirectory
-if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-
-  # Optionally set things like CMAKE_CXX_STANDARD, CMAKE_POSITION_INDEPENDENT_CODE here
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)  
   set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-  #set(CMAKE_VERBOSE_MAKEFILE ON)
-  #set(CMAKE_CXX_STANDARD 20)
-  #set(CMAKE_CXX_STANDARD_REQUIRED ON)
+  set(CMAKE_VERBOSE_MAKEFILE ON)
+  set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
   # Let's ensure -std=c++xx instead of -std=g++xx
   set(CMAKE_CXX_EXTENSIONS OFF)
 
   # Let's nicely support folders in IDEs
   set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
+  list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake-files/cmake")
+  include(snippets) 
+
+  if(STATIC_ANALYSIS)
+    enable_clang_tidy()
+    enable_cppcheck()
+  endif()
 
   include(GNUInstallDirs)
   include(CTest)
@@ -34,9 +41,6 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
   endif()
 endif()
 
-# We are using Conan
-#include(FetchContent)
-
 {% if requires is defined -%}
 {% for require in requires -%}
 find_package({{as_name(require)}} CONFIG REQUIRED)
@@ -44,7 +48,7 @@ find_package({{as_name(require)}} CONFIG REQUIRED)
 {%- endif %}
 
 add_subdirectory(src)
-add_subdirectory(apps)
+add_subdirectory(example)
 
 message(STATUS "CXX flags: ${CMAKE_CXX_FLAGS}")
 
