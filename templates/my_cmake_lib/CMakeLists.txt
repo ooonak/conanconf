@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.30.3)
 
 project(
   {{name}}
@@ -44,7 +44,7 @@ find_package({{as_name(require)}} CONFIG REQUIRED)
 {%- endif %}
 
 add_subdirectory(src)
-add_subdirectory(apps)
+add_subdirectory(example)
 
 message(STATUS "CXX flags: ${CMAKE_CXX_FLAGS}")
 

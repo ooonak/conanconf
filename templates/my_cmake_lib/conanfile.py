@@ -20,7 +20,7 @@ class {{package_name}}Recipe(ConanFile):
     default_options = {"shared": False, "fPIC": True}
 
     # Sources are located in the same place as this recipe, copy them to the recipe
-    exports_sources = "CMakeLists.txt", "apps/*", "docs/*", "include/*", "src/*", "tests/*"
+    exports_sources = "CMakeLists.txt", "example/*", "docs/*", "include/*", "src/*", "tests/*"
 
     def config_options(self):
         if self.settings.os == "Windows":
@@ -59,7 +59,7 @@ class {{package_name}}Recipe(ConanFile):
     {%- endif %}
 
     def build_requirements(self):
-        self.requires("gtest/1.14.0")
+        self.requires("gtest/1.15.0")
     {% if tool_requires is defined -%}
         {% for require in tool_requires -%}
         self.tool_requires("{{ require }}")

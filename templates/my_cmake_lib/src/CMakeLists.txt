@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.30.3)
 project({{name}} CXX)
 
 add_library({{name}}
