@@ -60,3 +60,11 @@ $ cd build
 $ ctest
 ```
 
+# Tools version
+Looked up versions from (Ubuntu 24.04.01 LTS) https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md
+
+ - CMake 3.30.3
+ - Ninja 1.11.1
+ - Clang 18.1.3 (tidy & format)
+ - GCC 13.2.0
+ - CppCheck
