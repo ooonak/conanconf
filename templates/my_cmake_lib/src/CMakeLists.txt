@@ -5,7 +5,9 @@ add_library({{name}}
   ../include/{{name}}/{{name}}.hpp
   {{name}}.cpp)
 
-set_warnings(${PROJECT_NAME})
+if(STRICT_WARNINGS)
+  set_warnings(${PROJECT_NAME})
+endif()
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC

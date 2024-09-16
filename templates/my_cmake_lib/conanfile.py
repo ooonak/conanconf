@@ -16,11 +16,11 @@ class {{package_name}}Recipe(ConanFile):
 
     # Binary configuration
     settings = "os", "compiler", "build_type", "arch"
-    options = {"shared": [True, False], "fPIC": [True, False]}
-    default_options = {"shared": False, "fPIC": True}
+    options = {"shared": [True, False], "fPIC": [True, False], "STATIC_ANALYSIS": [True, False], "STRICT_WARNINGS": [True, False]}
+    default_options = {"shared": False, "fPIC": True, "STATIC_ANALYSIS": False, "STRICT_WARNINGS": True}
 
     # Sources are located in the same place as this recipe, copy them to the recipe
-    exports_sources = "CMakeLists.txt", "example/*", "docs/*", "include/*", "src/*", "tests/*"
+    exports_sources = ".clang-tidy", ".clang-format", "CppCheckSuppressions.txt", "CMakeLists.txt", "cmake-files/*", "example/*", "docs/*", "include/*", "src/*", "tests/*"
 
     def config_options(self):
         if self.settings.os == "Windows":
@@ -37,6 +37,8 @@ class {{package_name}}Recipe(ConanFile):
         deps = CMakeDeps(self)
         deps.generate()
         tc = CMakeToolchain(self)
+        tc.variables["STATIC_ANALYSIS"] = self.options.STATIC_ANALYSIS
+        tc.variables["STRICT_WARNINGS"] = self.options.STRICT_WARNINGS
         tc.generate()
 
     def build(self):

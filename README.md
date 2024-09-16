@@ -12,7 +12,8 @@ $ conan config install https://github.com/ooonak/conanconf.git -t git --args="-b
 ```
 $ conan new my_cmake_lib -d name=hello -d version=0.0.1 -d requires=spdlog/1.14.1
 
-# Update git submodule
+# Add/Update git submodule
+$ git submodule add https://github.com/ooonak/cmake-files.git
 $ git submodule update --init --recursive
 ```
 
@@ -22,55 +23,31 @@ Comes with batteries included out of the box.
 $ conan build . -pr clang-release --build=missing
 $ cd build/Release
 $ ctest
-Test project /tmp/test2/build/Release
-    Start 1: hello.Dummy
-1/1 Test #1: hello.Dummy ......................   Passed    0.01 sec
+...
 
-100% tests passed, 0 tests failed out of 1
+$ ./build/Release/example/helloExample
+...
 
-Total Test time (real) =   0.01 sec
-
-$ ./build/Release/example/helloExample 
-hello/0.0.1: Hello World Release!
-  hello/0.0.1: __x86_64__ defined
-  hello/0.0.1: _GLIBCXX_USE_CXX11_ABI 0
-  hello/0.0.1: __cplusplus202302
-  hello/0.0.1: __GNUC__4
-  hello/0.0.1: __GNUC_MINOR__2
-  hello/0.0.1: __clang_major__18
-  hello/0.0.1: __clang_minor__1
-hello/0.0.1 test_package
-
-$ cd ../../
-$ conan create .
+$ conan create . -pr clang-release --build=missing
 ======== Testing the package: Executing test ========
-hello/0.0.1 (test package): Running test()
-hello/0.0.1 (test package): RUN: ./example
-hello/0.0.1: Hello World Release!
-  hello/0.0.1: __x86_64__ defined
-  hello/0.0.1: _GLIBCXX_USE_CXX11_ABI 1
-  hello/0.0.1: __cplusplus201703
-  hello/0.0.1: __GNUC__13
-  hello/0.0.1: __GNUC_MINOR__2
-hello/0.0.1 test_package
+...
 
-$ conan install .
+$ conan install . -pr clang-release --build=missing
 ```
 
 Dev flow.
 ```
-$ conan install . --output-folder=build --build=missing -pr=clang-debug
-$ cmake -S . -B build -G Ninja --preset conan-debug
-$ cmake --build build
-$ cd build
-$ ctest
+$ conan install . --build=missing -pr=clang-debug
+$ cmake --preset conan-debug
+$ cmake --build build/Debug
+$ ctest --preset conan-debug
+$ ./build/Debug/example/helloExample
 ```
 
-# Tools version
-Looked up versions from (Ubuntu 24.04.01 LTS) https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md
+CI flow with static analysis, strict compiler warnings, clang-tidy and CppCheck.
+```
+$ conan create . -pr clang-release --build=missing -o STATIC_ANALYSIS=True -o STRICT_WARNINGS=True
+```
 
- - CMake 3.30.3
- - Ninja 1.11.1
- - Clang 18.1.3 (tidy & format)
- - GCC 13.2.0
- - CppCheck
+## TODO
+ - It seems there is a compiler flag not compatible with GCC.

@@ -8,6 +8,7 @@ project(
 
 option(TESTS "Build tests" ON)
 option(STATIC_ANALYSIS "Run clang-tidy and CppCheck status analysis tools" OFF)
+option(STRICT_WARNINGS "Use strict compiler warnings" ON)
 
 # Only do these if this is the main project, and not if it is included through add_subdirectory
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)  
