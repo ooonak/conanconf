@@ -14,7 +14,7 @@ target_link_libraries(${PROJECT_NAME}
 
 {% if requires is defined -%}
 {% for require in requires -%}
-target_link_libraries({{name}} PRIVATE {{as_name(require)}}::{{as_name(require)}})
+target_link_libraries({{name}}Tests PRIVATE {{as_name(require)}}::{{as_name(require)}})
 {% endfor %}
 {%- endif %}
 
