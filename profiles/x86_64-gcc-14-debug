@@ -9,5 +9,5 @@ os=Linux
 
 [conf]
 tools.cmake.cmaketoolchain:generator=Ninja
-tools.build:cxxflags=["-O2", "-Wall", "-Wextra"]
-tools.build:cflags=["-O2", "-Wall", "-Wextra"]
+tools.build:cxxflags=["-g", "-Wall", "-Wextra"]
+tools.build:cflags=["-g", "-Wall", "-Wextra"]
