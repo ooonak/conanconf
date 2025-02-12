@@ -2,13 +2,12 @@
 arch=x86_64
 build_type=Release
 compiler=gcc
-compiler.cppstd=gnu20
+compiler.cppstd=gnu23
 compiler.libcxx=libstdc++11
 compiler.version=14
 os=Linux
 
 [conf]
 tools.cmake.cmaketoolchain:generator=Ninja
-#tools.build:cxxflags=["-O2", "-Wall", "-Wextra", "-Wpedantic"]
-#tools.build:cflags=["-O2", "-Wall", "-Wextra", "-Wpedantic"]
-
+tools.build:cxxflags=["-O2", "-Wall", "-Wextra"]
+tools.build:cflags=["-O2", "-Wall", "-Wextra"]

@@ -1,4 +1,0 @@
-include(clang-18)
-
-[settings]
-build_type=Release
