@@ -1,0 +1,9 @@
+include(x86_64-clang-18)
+
+[settings]
+build_type=Debug
+
+[conf]
+tools.build:cxxflags=["-g", "-O1", "-fsanitize=address", "-fno-omit-frame-pointer", "-fno-optimize-sibling-calls", "-fno-common"]
+tools.build:cflags=["-g", "-O1", "-fsanitize=address", "-fno-omit-frame-pointer", "-fno-optimize-sibling-calls", "-fno-common"]
+tools.build:LDFLAGS=["-fsanitize=address"]
