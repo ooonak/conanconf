@@ -1,0 +1,10 @@
+include(x86_64-clang-18)
+
+[settings]
+build_type=Debug
+
+[conf]
+tools.build:cxxflags=["-g", "-O2", "-fprofile-instr-generate", "-fcoverage-mapping"]
+tools.build:cflags=["-g", "-O2", "-fprofile-instr-generate", "-fcoverage-mapping"]
+tools.build:sharedlinkflags=["-fprofile-instr-generate", "-fcoverage-mapping"]
+tools.build:exelinkflags=["-fprofile-instr-generate", "-fcoverage-mapping"]
