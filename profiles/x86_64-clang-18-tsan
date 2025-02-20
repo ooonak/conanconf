@@ -6,4 +6,6 @@ build_type=Debug
 [conf]
 tools.build:cxxflags=["-g", "-O2", "-fsanitize=thread"]
 tools.build:cflags=["-g", "-O2", "-fsanitize=thread"]
-tools.build:ldflags=["-fsanitize=thread"]
+tools.build:sharedlinkflags=["-fsanitize=thread"]
+tools.build:exelinkflags=["-fsanitize=thread"]
+
