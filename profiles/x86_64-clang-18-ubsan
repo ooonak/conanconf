@@ -6,4 +6,4 @@ build_type=Debug
 [conf]
 tools.build:cxxflags=["-g", "-O1", "-fsanitize=undefined"]
 tools.build:cflags=["-g", "-O1", "-fsanitize=undefined"]
-tools.build:LDFLAGS=["-fsanitize=undefined"]
+tools.build:ldflags=["-fsanitize=undefined"]

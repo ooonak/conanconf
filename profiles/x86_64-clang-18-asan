@@ -6,4 +6,4 @@ build_type=Debug
 [conf]
 tools.build:cxxflags=["-g", "-O1", "-fsanitize=address", "-fno-omit-frame-pointer", "-fno-optimize-sibling-calls", "-fno-common"]
 tools.build:cflags=["-g", "-O1", "-fsanitize=address", "-fno-omit-frame-pointer", "-fno-optimize-sibling-calls", "-fno-common"]
-tools.build:LDFLAGS=["-fsanitize=address"]
+tools.build:ldflags=["-fsanitize=address"]
